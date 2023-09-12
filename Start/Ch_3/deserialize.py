@@ -9,6 +9,17 @@ import pprint
 result = []
 
 # TODO: open the CSV file for reading
+with open("Start\\Ch_3\\largequakes.csv", "r") as f:
+    reader = csv.reader(f)
+    sniffer = csv.Sniffer()
+    sample = f.read(1024)
+    f.seek(0)
+    if sniffer.has_header(sample):
+        next(reader)
 
+    for row in reader:
+        # sol1
+        a, b, c, d = row
+        result.append({"place": a, "magnitude": b, "date": c, "link": d})
 
 pprint.pp(result)
